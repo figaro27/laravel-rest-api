@@ -6,16 +6,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class User extends Authenticatable
 {
     use Notifiable,HasApiTokens;
-
-    use Uuid;
-    protected $keyType = 'string';
-    public $incrementing = false;
-    protected $guarded = [];
 
     /**
      * The attributes that are mass assignable.

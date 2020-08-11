@@ -6,7 +6,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller as Controller;
 use App\User;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth; 
 use Illuminate\Support\Facades\Hash;
 
 use Validator;
@@ -29,9 +29,8 @@ class RegisterController extends Controller
         $user = User::where('email', $request->email)->first();
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
-                $token = $user->createToken('AccessToken')->accessToken;
-                $response['message'] = "success";
-                $response['token'] = $token;
+                $token = $user->createToken('AccessToken')->accessToken;               
+                $response = ['token' => $token];
                 return response($response, 200);
             } else {
                 $response = ["message" => "Password mismatch"];

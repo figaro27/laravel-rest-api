@@ -29,7 +29,6 @@ Route::middleware('auth:api')->group( function () {
 
     Route::get('phonetype', 'API\PhoneTypeController@getPhoneType');
     Route::get('addresstype', 'API\AddressTypeController@getAddressType');
-    Route::post('person', 'API\PersonController@save');
-
+    
     Route::post('logout', 'API\RegisterController@logout');
 });
