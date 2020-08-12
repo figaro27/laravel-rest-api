@@ -801,6 +801,65 @@
         ]
     },
     {
+        "name": "goldspecdigital/laravel-eloquent-uuid",
+        "version": "v6.2.0",
+        "version_normalized": "6.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/goldspecdigital/laravel-eloquent-uuid.git",
+            "reference": "c9466696f7a5a9e389da3d3e486a18af83b5f936"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/goldspecdigital/laravel-eloquent-uuid/zipball/c9466696f7a5a9e389da3d3e486a18af83b5f936",
+            "reference": "c9466696f7a5a9e389da3d3e486a18af83b5f936",
+            "shasum": ""
+        },
+        "require": {
+            "laravel/framework": "^6.0",
+            "php": "^7.2"
+        },
+        "require-dev": {
+            "ext-pdo": "*",
+            "friendsofphp/php-cs-fixer": "^2.15",
+            "orchestra/testbench": "^4.0",
+            "phpunit/phpunit": "^8.0"
+        },
+        "time": "2020-02-13T16:31:38+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "GoldSpecDigital\\LaravelEloquentUUID\\UuidServiceProvider"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "GoldSpecDigital\\LaravelEloquentUUID\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Matthew Inamdar",
+                "email": "matt@goldspecdigital.com"
+            }
+        ],
+        "description": "A simple drop-in solution for providing UUID support for the IDs of your Eloquent models.",
+        "homepage": "https://github.com/goldspecdigital/laravel-eloquent-uuid",
+        "keywords": [
+            "eloquent",
+            "laravel",
+            "php",
+            "uuid"
+        ]
+    },
+    {
         "name": "guzzlehttp/guzzle",
         "version": "6.5.2",
         "version_normalized": "6.5.2.0",
@@ -1087,7 +1146,8 @@
                 "name": "Jakub Onderka",
                 "email": "jakub.onderka@gmail.com"
             }
-        ]
+        ],
+        "abandoned": "php-parallel-lint/php-console-color"
     },
     {
         "name": "jakub-onderka/php-console-highlighter",
@@ -1135,7 +1195,8 @@
                 "homepage": "http://www.acci.cz/"
             }
         ],
-        "description": "Highlight PHP code in terminal"
+        "description": "Highlight PHP code in terminal",
+        "abandoned": "php-parallel-lint/php-console-highlighter"
     },
     {
         "name": "laminas/laminas-diactoros",

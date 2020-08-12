@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Phonetype extends Model
+class Addresstype extends Model
 {
     protected $fillable = [
-        'phonetype'
+        'addresstype'
     ];
 }

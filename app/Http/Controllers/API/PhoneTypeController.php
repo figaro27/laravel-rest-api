@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\PhoneType;
+use App\Models\PhoneType;
 
 class PhonetypeController extends Controller
 {
