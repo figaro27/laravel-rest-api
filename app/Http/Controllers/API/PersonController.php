@@ -9,7 +9,11 @@ class PersonController extends Controller
 {
     public function save(Request $request)
     {
-        $person = Person::create($request->all());
-        return $person;
+        $user = auth()->user();
+        $person = $request->all();
+        $person['created_by'] = $user->id;
+        $person['updated_by'] = $user->id;
+        $response = Person::create($person);
+        return $response;
     }
 }
