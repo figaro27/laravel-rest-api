@@ -27,4 +27,16 @@ class LeadController extends Controller
 
         return $lead;
     }
+
+    public function update(Request $request, $id)
+    {
+        $input = $request->all();
+        $blog = Lead::find($id)->update($input);
+        $message = 'Lead updated successfully.';
+        $status = true;
+
+        $response = $this->response($status, $blog, $message);
+        return $response;
+    }
+
 }

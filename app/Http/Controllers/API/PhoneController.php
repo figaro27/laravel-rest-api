@@ -5,17 +5,17 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Address;
+use App\Models\Phone;
 
-class AddressController extends Controller
+class PhoneController extends Controller
 {
     public function save(Request $request)
     {
         $user = auth()->user();
-        $address = $request->all();
-        $address['created_by'] = $user->id;
-        $address['updated_by'] = $user->id;
-        $response = Address::create($address);
+        $phone = $request->all();
+        $phone['created_by'] = $user->id;
+        $phone['updated_by'] = $user->id;
+        $response = phone::create($phone);
         return $response;
     }
 
@@ -23,21 +23,21 @@ class AddressController extends Controller
     {
         $input = $request->all();
 
-        //disable primary Address
+        //disable primary phone
         if(array_key_exists('primary', $input)){
             if($input['primary'] == true){
-                Address::where('personid', $input['personid'])
+                Phone::where('personid', $input['personid'])
                     ->where('primary', true)
                     ->update(['primary'=>false]);
             }
         }
 
-        //Update Address
-        $address = Address::find($id)->update($input);
-        if($address){
-            $address = Address::find($id);
+        //Update Phone
+        $phone = Phone::find($id)->update($input);
+        if($phone){
+            $phone = Phone::find($id);
             $response['status'] = true;
-            $response['data'] = $Address;
+            $response['data'] = $phone;
         }
         else {
             $response['status'] = false;
@@ -45,13 +45,14 @@ class AddressController extends Controller
         return $response;
     }
 
-    public function getAddressType()
+    public function getPhoneType()
     {
         //Get list of blogs
-        $addresstype = DB::table('addresstype')->get();
+        $phonetype = DB::table('phonetype')->get();
         $status = true;
         $response['status'] = "sucess";
-        $response['data'] = $addresstype;
+        $response['data'] = $phonetype;
         return $response;
     }
+
 }
