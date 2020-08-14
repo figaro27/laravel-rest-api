@@ -9,7 +9,7 @@ use App\Models\Address;
 
 class AddressController extends Controller
 {
-    public function save(Request $request)
+    public function create(Request $request)
     {
         $user = auth()->user();
         $address = $request->all();
@@ -33,11 +33,11 @@ class AddressController extends Controller
         }
 
         //Update Address
-        $address = Address::find($id)->update($input);
-        if($address){
+        $result = Address::find($id)->update($input);
+        if($result){
             $address = Address::find($id);
             $response['status'] = true;
-            $response['data'] = $Address;
+            $response['data'] = $address;
         }
         else {
             $response['status'] = false;

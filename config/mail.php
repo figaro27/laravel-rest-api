@@ -133,4 +133,7 @@ return [
 
     'log_channel' => env('MAIL_LOG_CHANNEL'),
 
+    'from' => ['address' => 'sweetfigaro27@gmail.com', 'name' => 'App Name'],
+
+
 ];

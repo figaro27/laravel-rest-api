@@ -9,7 +9,7 @@ use App\Models\Phone;
 
 class PhoneController extends Controller
 {
-    public function save(Request $request)
+    public function create(Request $request)
     {
         $user = auth()->user();
         $phone = $request->all();
@@ -33,8 +33,8 @@ class PhoneController extends Controller
         }
 
         //Update Phone
-        $phone = Phone::find($id)->update($input);
-        if($phone){
+        $result = Phone::find($id)->update($input);
+        if($result){
             $phone = Phone::find($id);
             $response['status'] = true;
             $response['data'] = $phone;

@@ -4,9 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Lead;
+use App\Models\LeadDetail;
 
-class LeadController extends Controller
+class LeadDetailController extends Controller
 {
     public function create(Request $request)
     {
@@ -14,26 +14,23 @@ class LeadController extends Controller
         $lead = $request->all();
         $lead['created_by'] = $user->id;
         $lead['updated_by'] = $user->id;
-        $response = Lead::create($lead);
+        $response = LeadDetail::create($lead);
         return $response;
-    }
-
-    public function search(Request $request)
-    {
-        $user = auth()->user();
-        $lead = Lead::where('created_by', $user->id)->get();
-
-        return $lead;
     }
 
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $result = Lead::find($id)->update($input);
-        $lead = Lead::find($id);
-        $response['status'] = true;
-        $response['data'] = $lead;
+        //Update Person
+        $result = LeadDetail::find($id)->update($input);
+        if($result){
+            $leaddetail = LeadDetail::find($id);
+            $response['status'] = true;
+            $response['data'] = $leaddetail;
+        }
+        else {
+            $response['status'] = false;
+        }
         return $response;
     }
-
 }
