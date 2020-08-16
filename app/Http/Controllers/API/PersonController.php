@@ -20,17 +20,10 @@ class PersonController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-
-        //Update Person
         $result = Person::find($id)->update($input);
-        if($result){
-            $person = Person::find($id);
-            $response['status'] = true;
-            $response['data'] = $person;
-        }
-        else {
-            $response['status'] = false;
-        }
+        $person = Person::find($id);
+        $response['status'] = true;
+        $response['data'] = $person;
         return $response;
     }
 }
