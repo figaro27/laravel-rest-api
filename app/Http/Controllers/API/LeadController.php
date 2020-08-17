@@ -20,9 +20,9 @@ class LeadController extends Controller
 
     public function search(Request $request)
     {
-        $user = auth()->user();
-        $lead = Lead::where('created_by', $user->id)->get();
-
+       // $user = auth()->user();
+       // $lead = Lead::where('created_by', $user->id)->get();
+       $lead = Lead::all();
         return $lead;
     }
 
