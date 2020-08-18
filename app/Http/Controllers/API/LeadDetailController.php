@@ -21,6 +21,8 @@ class LeadDetailController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
+        $user = auth()->user();
+        $input['updated_by'] = $user->id;
         //Update Person
         $result = LeadDetail::find($id)->update($input);
         if($result){

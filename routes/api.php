@@ -41,6 +41,7 @@ Route::middleware('auth:api')->group( function () {
     Route::post('lead', 'API\LeadController@create');
     Route::post('lead/search', 'API\LeadController@search');
     Route::get('lead/list', 'API\LeadController@list');
+    Route::get('lead/{id}', 'API\LeadController@show');
 
     Route::post('leaddetail', 'API\LeadDetailController@create');
     Route::put('leaddetail/{id}', 'API\LeadDetailController@update');

@@ -21,6 +21,8 @@ class IngredientController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
+        $user = auth()->user();
+        $input['updated_by'] = $user->id;
         $result = Ingredient::find($id)->update($input);
         $ingredient = Ingredient::find($id);
         $response['status'] = true;

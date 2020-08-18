@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Lead;
 use App\Models\Person;
+use App\Models\Address;
+use App\Models\Phone;
+use App\Models\LeadDetail;
 
 class LeadController extends Controller
 {
@@ -15,7 +18,7 @@ class LeadController extends Controller
         $input = $request->all();
         $input['created_by'] = $user->id;
         $input['updated_by'] = $user->id;
-        $lead = Lead::create($lead);
+        $lead = Lead::create($input);
         $response = $this->response("success", $lead, "");
         return $response;
     }
@@ -26,6 +29,24 @@ class LeadController extends Controller
        // $lead = Lead::where('created_by', $user->id)->get();
         $lead = Lead::all();
         return $lead;
+    }
+
+    public function show($id)
+    {
+       // $user = auth()->user();
+       // $lead = Lead::where('created_by', $user->id)->get();
+        $lead = Lead::find($id);
+        $person = Person::find($lead['personid']);
+        $address = Address::where('personid', $person->id)->get();
+        $phone = Phone::where('personid', $person->id)->get();
+        $leaddetail = LeadDetail::where('leadid', $lead->id)->get();
+
+        $response['lead'] = $lead;
+        $response['person'] = $person;
+        $response['leaddetail'] = $leaddetail;
+        $response['address'] = $address;
+        $response['phone'] = $phone;
+        return $response;
     }
 
     public function list(Request $request)

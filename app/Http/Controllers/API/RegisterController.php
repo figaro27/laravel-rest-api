@@ -57,16 +57,27 @@ class RegisterController extends Controller
     {
         //Validate requested data
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'email' => 'required|email',
             'password' => 'required',
             'c_password' => 'required|same:password',
         ]);
+
         if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());
+            $response['status'] = "error";
+            $response['message'] = $validator->errors();
+            return $response;
         }
 
         $input = $request->all();
+        $count_email = User::where('email', $input['email'])->count();
+        if($count_email > 0){
+            $response['status'] = "error";
+            $response['message'] = "Email already exists!";
+            return $response;
+        }
+
         $input['password'] = Hash::make($request['password']);
         $user = User::create($input);
         $response['token'] =  $user->createToken('AccessToken')->accessToken;

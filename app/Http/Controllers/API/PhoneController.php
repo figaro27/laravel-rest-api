@@ -33,11 +33,12 @@ class PhoneController extends Controller
         }
 
         //Update Phone
+        $user = auth()->user();
+        $input['updated_by'] = $user->id;
         $result = Phone::find($id)->update($input);
         $phone = Phone::find($id);
         $response['status'] = "success";
         $response['data'] = $phone;
-
         return $response;
     }
 
