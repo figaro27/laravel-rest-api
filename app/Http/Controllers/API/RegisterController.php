@@ -30,22 +30,26 @@ class RegisterController extends Controller
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('AccessToken')->accessToken;
-                $response['token'] = $token;
+                $response['status'] = "success";
+                $response['data']['token'] = $token;
                 $response['message'] = "sucess";
                 return response($response, 200);
             } else {
-                $response = ["message" => "Password mismatch"];
+                $response['status'] = "error";
+                $response["message"] = "Password mismatch";
                 return response($response, 422);
             }
         } else {
-            $response = ["message" =>'User does not exist'];
+            $response['status'] = "error";
+            $response["message"] = "User does not exist";
             return response($response, 422);
         }
     }
 
     public function logout (Request $request) {
         $request->user()->token()->revoke();
-        $response = ['message' => 'You have been successfully logged out!'];
+        $response['status'] = 'success';
+        $response['message'] = 'You have been successfully logged out!';
         return response($response, 200);
     }
 
@@ -67,7 +71,7 @@ class RegisterController extends Controller
         $user = User::create($input);
         $response['token'] =  $user->createToken('AccessToken')->accessToken;
         $response['name'] =  $user->name;
-        $response['success'] = true;
+        $response['status'] = "success";
         $response['message'] = "User registered successfully.";
         return $response;
     }

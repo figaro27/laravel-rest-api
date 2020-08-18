@@ -21,6 +21,8 @@ class ColorController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
+        $user = auth()->user();
+        $input['updated_by'] = $user->id;
         $result = Color::find($id)->update($input);
         $color = Color::find($id);
         $response['status'] = true;

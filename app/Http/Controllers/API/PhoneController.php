@@ -35,7 +35,7 @@ class PhoneController extends Controller
         //Update Phone
         $result = Phone::find($id)->update($input);
         $phone = Phone::find($id);
-        $response['status'] = true;
+        $response['status'] = "success";
         $response['data'] = $phone;
 
         return $response;

@@ -22,7 +22,6 @@ class AddressController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-
         //disable primary Address
         if(array_key_exists('primary', $input)){
             if($input['primary'] == true){
@@ -31,8 +30,9 @@ class AddressController extends Controller
                     ->update(['primary'=>false]);
             }
         }
-
         //Update Address
+        $user = auth()->user();
+        $input['updated_by'] = $user->id;
         $result = Address::find($id)->update($input);
         if($result){
             $address = Address::find($id);

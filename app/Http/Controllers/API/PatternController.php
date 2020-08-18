@@ -21,6 +21,8 @@ class PatternController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
+        $user = auth()->user();
+        $input['updated_by'] = $user->id;
         $result = Pattern::find($id)->update($input);
         $pattern = Pattern::find($id);
         $response['status'] = true;

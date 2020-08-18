@@ -38,8 +38,9 @@ Route::middleware('auth:api')->group( function () {
     Route::post('phone', 'API\PhoneController@save');
     Route::put('phone/{id}', 'API\PhoneController@update');
 
-    // Route::post('lead', 'API\LeadController@create');
-    // Route::post('lead/search', 'API\LeadController@search');
+    Route::post('lead', 'API\LeadController@create');
+    Route::post('lead/search', 'API\LeadController@search');
+    Route::get('lead/list', 'API\LeadController@list');
 
     Route::post('leaddetail', 'API\LeadDetailController@create');
     Route::put('leaddetail/{id}', 'API\LeadDetailController@update');
@@ -50,11 +51,10 @@ Route::middleware('auth:api')->group( function () {
     Route::post('ingredient', 'API\IngredientController@create');
     Route::put('ingredient/{id}', 'API\IngredientController@update');
 
+    Route::post('note', 'API\NoteController@create');
+    Route::post('note/{id}', 'API\NoteController@update');
+
     Route::get('mail', 'API\MailController@mail');
 
     Route::post('logout', 'API\RegisterController@logout');
 });
-
-
-Route::post('lead', 'API\LeadController@create');
-Route::post('lead/search', 'API\LeadController@search');
