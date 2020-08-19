@@ -31,7 +31,7 @@ class RegisterController extends Controller
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('AccessToken')->accessToken;
                 $response['status'] = "success";
-                $response['data']['token'] = $token;
+                $response['token'] = $token;
                 $response['message'] = "sucess";
                 return response($response, 200);
             } else {

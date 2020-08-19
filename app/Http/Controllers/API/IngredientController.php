@@ -5,17 +5,28 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ingredient;
+use App\Models\IngredientColors;
 
 class IngredientController extends Controller
 {
     public function create(Request $request)
     {
         $user = auth()->user();
-        $ingredient = $request->all();
+        $ingredient['name'] = $request['name'];
+        $ingredient['coverage'] = $request['coverage'];
+        $ingredient['purchageprice'] = $request['purchageprice'];
         $ingredient['created_by'] = $user->id;
         $ingredient['updated_by'] = $user->id;
-        $response = Ingredient::create($ingredient);
-        return $response;
+        $res_ingredient = Ingredient::create($ingredient);
+        $colorIds = $request['color'];
+        foreach ($colorIds as $colorId) {
+            $ingredientColor['ingredientid'] = $res_ingredient['id'];
+            $ingredientColor['colorid'] = $colorId;
+            $ingredientColor['created_by'] = $user->id;
+            $ingredientColor['updated_by'] = $user->id;
+            $res_ingredientColor = IngredientColors::create($ingredientColor);
+        }
+        return $res_ingredient;
     }
 
     public function update(Request $request, $id)

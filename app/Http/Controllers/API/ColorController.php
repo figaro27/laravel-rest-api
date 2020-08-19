@@ -30,9 +30,10 @@ class ColorController extends Controller
         return $response;
     }
 
-    public function search($personid)
+    public function search()
     {
-        $color = Color::where('created_by', $personid);
+        $user = auth()->user();
+        $color = Color::where('created_by', $user->id)->get();
         $response = $color;
         return $response;
     }

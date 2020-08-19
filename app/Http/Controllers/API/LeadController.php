@@ -19,7 +19,7 @@ class LeadController extends Controller
         $input['created_by'] = $user->id;
         $input['updated_by'] = $user->id;
         $lead = Lead::create($input);
-        $response = $this->response("success", $lead, "");
+        $response = $lead;
         return $response;
     }
 
@@ -57,7 +57,7 @@ class LeadController extends Controller
             $person = Person::where('id', $lead->personid)->get();
             $lead['person'] = $person;
         }
-        $response = $this->response("success", $leads, "");
+        $response = $leads;
         return $response;
     }
 
@@ -66,17 +66,19 @@ class LeadController extends Controller
         $input = $request->all();
         $result = Lead::find($id)->update($input);
         $lead = Lead::find($id);
-        $response = $this->response("success", $lead, "");
+        $response = $lead;
         return $response;
     }
 
-    public function response($status, $data, $message)
+    public function destroy($id)
     {
-        //Response data structure
-        $return['success'] = $status;
-        $return['data'] = $data;
-        $return['message'] = $message;
-        return $return;
+        //Delete blog
+        $lead = Lead::findOrFail($id);
+        $lead->delete();
+
+
+        $response['status'] = 'success';
+        return $response;
     }
 
 }

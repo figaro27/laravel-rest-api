@@ -24,8 +24,7 @@ class PersonController extends Controller
         $input['updated_by'] = $user->id;
         $result = Person::find($id)->update($input);
         $person = Person::find($id);
-        $response['status'] = true;
-        $response['data'] = $person;
+        $response = $person;
         return $response;
     }
 }

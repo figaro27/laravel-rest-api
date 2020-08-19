@@ -39,18 +39,25 @@ Route::middleware('auth:api')->group( function () {
     Route::put('phone/{id}', 'API\PhoneController@update');
 
     Route::post('lead', 'API\LeadController@create');
-    Route::post('lead/search', 'API\LeadController@search');
-    Route::get('lead/list', 'API\LeadController@list');
+    Route::get('leads', 'API\LeadController@list');
     Route::get('lead/{id}', 'API\LeadController@show');
+    Route::delete('lead/{id}', 'API\LeadController@destroy');
 
     Route::post('leaddetail', 'API\LeadDetailController@create');
     Route::put('leaddetail/{id}', 'API\LeadDetailController@update');
 
     Route::post('color', 'API\ColorController@create');
     Route::put('color/{id}', 'API\ColorController@update');
+    Route::post('color/search', 'API\ColorController@search');
+
+    Route::post('pattern', 'API\PatternController@create');
+    Route::put('pattern/{id}', 'API\PatternController@update');
 
     Route::post('ingredient', 'API\IngredientController@create');
     Route::put('ingredient/{id}', 'API\IngredientController@update');
+
+    Route::post('system', 'API\SystemController@create');
+    Route::post('system/detail', 'API\SystemDetailController@create');
 
     Route::post('note', 'API\NoteController@create');
     Route::post('note/{id}', 'API\NoteController@update');
