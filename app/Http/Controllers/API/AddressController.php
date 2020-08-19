@@ -15,6 +15,16 @@ class AddressController extends Controller
         $address = $request->all();
         $address['created_by'] = $user->id;
         $address['updated_by'] = $user->id;
+
+         //disable primary phone
+         if(array_key_exists('primary', $address)){
+            if($address['primary'] == true){
+                Phone::where('personid', $address['personid'])
+                    ->where('primary', true)
+                    ->update(['primary'=>false]);
+            }
+        }
+
         $response = Address::create($address);
         return $response;
     }
@@ -34,24 +44,15 @@ class AddressController extends Controller
         $user = auth()->user();
         $input['updated_by'] = $user->id;
         $result = Address::find($id)->update($input);
-        if($result){
-            $address = Address::find($id);
-            $response['status'] = true;
-            $response['data'] = $address;
-        }
-        else {
-            $response['status'] = false;
-        }
+        $address = Address::find($id);
+        $response= $address;
         return $response;
     }
 
     public function getAddressType()
     {
-        //Get list of blogs
         $addresstype = DB::table('addresstype')->get();
-        $status = true;
-        $response['status'] = "sucess";
-        $response['data'] = $addresstype;
+        $response = $addresstype;
         return $response;
     }
 }

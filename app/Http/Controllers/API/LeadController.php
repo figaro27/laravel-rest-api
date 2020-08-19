@@ -33,8 +33,6 @@ class LeadController extends Controller
 
     public function show($id)
     {
-       // $user = auth()->user();
-       // $lead = Lead::where('created_by', $user->id)->get();
         $lead = Lead::find($id);
         $person = Person::find($lead['personid']);
         $address = Address::where('personid', $person->id)->get();
@@ -72,11 +70,16 @@ class LeadController extends Controller
 
     public function destroy($id)
     {
-        //Delete blog
         $lead = Lead::findOrFail($id);
         $lead->delete();
-
-
+        $person = Person::find($lead['personid']);
+        $person->delete();
+        $addresses = Address::where('personid', $person->id)->get();
+        foreach($addresses as $address) $address->delete();
+        $phones = Phone::where('personid', $person->id)->get();
+        foreach($phones as $phone) $phone->delete();
+        $leaddetails = LeadDetail::where('leadid', $lead->id)->get();
+        foreach($leaddetails as $leaddetail) $leaddetail->delete();
         $response['status'] = 'success';
         return $response;
     }

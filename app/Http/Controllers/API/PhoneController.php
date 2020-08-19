@@ -15,6 +15,16 @@ class PhoneController extends Controller
         $phone = $request->all();
         $phone['created_by'] = $user->id;
         $phone['updated_by'] = $user->id;
+
+         //disable primary phone
+        if(array_key_exists('primary', $phone)){
+            if($phone['primary'] == true){
+                Phone::where('personid', $phone['personid'])
+                    ->where('primary', true)
+                    ->update(['primary'=>false]);
+            }
+        }
+
         $response = phone::create($phone);
         return $response;
     }
@@ -37,18 +47,14 @@ class PhoneController extends Controller
         $input['updated_by'] = $user->id;
         $result = Phone::find($id)->update($input);
         $phone = Phone::find($id);
-        $response['status'] = "success";
-        $response['data'] = $phone;
+        $response = $phone;
         return $response;
     }
 
     public function getPhoneType()
     {
-        //Get list of blogs
         $phonetype = DB::table('phonetype')->get();
-        $status = true;
-        $response['status'] = "sucess";
-        $response['data'] = $phonetype;
+        $response = $phonetype;
         return $response;
     }
 

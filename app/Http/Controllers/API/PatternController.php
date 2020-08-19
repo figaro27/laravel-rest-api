@@ -14,7 +14,15 @@ class PatternController extends Controller
         $pattern = $request->all();
         $pattern['created_by'] = $user->id;
         $pattern['updated_by'] = $user->id;
-        $response = Pattern::create($pattern);
+        $count = Pattern::where('created_by', $user->id)->where('name', $pattern['name'])->count();
+        if($count > 0){
+            $response['status'] = "error";
+            $response['message'] = "pattern name duplicated!";
+        }
+        else{
+            $response = Pattern::create($pattern);
+            $response['status'] = "success";
+        }
         return $response;
     }
 
@@ -25,15 +33,23 @@ class PatternController extends Controller
         $input['updated_by'] = $user->id;
         $result = Pattern::find($id)->update($input);
         $pattern = Pattern::find($id);
-        $response['status'] = true;
-        $response['data'] = $pattern;
+        $response = $pattern;
         return $response;
     }
 
-    public function search($personid)
+    public function list()
     {
-        $pattern = Pattern::where('created_by', $personid);
+        $user = auth()->user();
+        $pattern = Pattern::where('created_by', $user->id)->get();
         $response = $pattern;
+        return $response;
+    }
+
+    public function destroy($id)
+    {
+        $pattern = Pattern::findOrFail($id);
+        $pattern->delete();
+        $response['status'] = 'success';
         return $response;
     }
 }

@@ -14,7 +14,15 @@ class ColorController extends Controller
         $color = $request->all();
         $color['created_by'] = $user->id;
         $color['updated_by'] = $user->id;
-        $response = Color::create($color);
+        $count = Color::where('created_by', $user->id)->where('name', $color['name'])->count();
+        if($count > 0){
+            $response['status'] = "error";
+            $response['message'] = "color name duplicated!";
+        }
+        else{
+            $response = Color::create($color);
+            $response['status'] = "success";
+        }
         return $response;
     }
 
@@ -25,16 +33,24 @@ class ColorController extends Controller
         $input['updated_by'] = $user->id;
         $result = Color::find($id)->update($input);
         $color = Color::find($id);
-        $response['status'] = true;
-        $response['data'] = $color;
+        $response = $color;
+        $response['status'] = "success";
         return $response;
     }
 
-    public function search()
+    public function list()
     {
         $user = auth()->user();
         $color = Color::where('created_by', $user->id)->get();
         $response = $color;
+        return $response;
+    }
+
+    public function destroy($id)
+    {
+        $color = Color::findOrFail($id);
+        $color->delete();
+        $response['status'] = 'success';
         return $response;
     }
 
