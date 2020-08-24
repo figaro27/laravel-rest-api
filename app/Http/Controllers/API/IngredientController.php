@@ -57,8 +57,12 @@ class IngredientController extends Controller
     public function list()
     {
         $user = auth()->user();
-        $ingredient = Ingredient::where('created_by', $user->id)->get();
-        $response = $ingredient;
+        $ingredients = Ingredient::where('created_by', $user->id)->get();
+        foreach($ingredients as $ingredient){
+            $ingredient['color'] = IngredientColor::where('ingredientid', $ingredient->id)->get();
+            $ingredient['pattern'] = IngredientPattern::where('ingredientid', $ingredient->id)->get();
+        }
+        $response = $ingredients;
         return $response;
     }
 
