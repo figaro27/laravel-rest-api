@@ -7,7 +7,5 @@ use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Model;
 
 class SystemDetail extends Model
 {
-    protected $fillable = [
-        'ingredientid', 'systemid',
-    ];
+
 }

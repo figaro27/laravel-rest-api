@@ -19,7 +19,7 @@ class AddressController extends Controller
          //disable primary phone
          if(array_key_exists('primary', $address)){
             if($address['primary'] == true){
-                Phone::where('personid', $address['personid'])
+                Address::where('personid', $address['personid'])
                     ->where('primary', true)
                     ->update(['primary'=>false]);
             }

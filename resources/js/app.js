@@ -3,14 +3,13 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
+require('./bootstrap')
+import Vue from 'vue';
 import Vuetify from 'vuetify';
 import VuePersianDatetimePicker from 'vue-persian-datetime-picker';
 import { sync } from 'vuex-router-sync'
 import router from "./router";
 import store from "./store";
-
-
 
 // Translation provided by Vuetify (javascript)
 
@@ -31,6 +30,7 @@ window.Vue = require('vue');
 Vue.use(require('vue-chartist'));
 Vue.component('date-picker', VuePersianDatetimePicker);
 
+
 Vue.use(Vuetify, {
     // rtl: true,
     theme: {
@@ -41,15 +41,6 @@ Vue.use(Vuetify, {
 Vue.component('app', require('./index.vue').default);
 
 sync(store, router);
-
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-
 
 const app = new Vue({
     router,

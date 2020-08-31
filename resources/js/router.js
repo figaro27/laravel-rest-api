@@ -4,6 +4,8 @@ import PhoneBookPage from './ui/pages/phoneBook';
 import LoginPage from './ui/pages/login';
 import store from './store/index';
 
+import AuthPage from './ui/pages/auth';
+
 Vue.use(VueRouter);
 
 function guard(to, from, next){
@@ -28,7 +30,7 @@ export default new VueRouter({
         {
             path: '/login',
             name: 'Login',
-            component: LoginPage
+            component: AuthPage
         }
     ]
 })

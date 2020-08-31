@@ -43,6 +43,12 @@ Route::middleware('auth:api')->group( function () {
     Route::get('lead/{id}', 'API\LeadController@show');
     Route::delete('lead/{id}', 'API\LeadController@destroy');
 
+    Route::post('project', 'API\ProjectController@create');
+    Route::get('projects', 'API\ProjectController@list');
+    Route::put('project/{id}', 'API\ProjectController@update');
+
+    Route::post('projectdetail', 'API\ProjectDetailController@create');
+
     Route::post('leaddetail', 'API\LeadDetailController@create');
     Route::put('leaddetail/{id}', 'API\LeadDetailController@update');
 

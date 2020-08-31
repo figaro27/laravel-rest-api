@@ -15,11 +15,18 @@ class LeadController extends Controller
     public function create(Request $request)
     {
         $user = auth()->user();
-        $input = $request->all();
-        $input['created_by'] = $user->id;
-        $input['updated_by'] = $user->id;
-        $lead = Lead::create($input);
-        $response = $lead;
+        $person = $request->all();
+        $person['created_by'] = $user->id;
+        $person['updated_by'] = $user->id;
+        $person = Person::create($person);
+
+        $new_lead['personid'] = $person['id'];
+        $new_lead['created_by'] = $user->id;
+        $new_lead['updated_by'] = $user->id;
+        $lead = Lead::create($new_lead);
+
+        $response = $person;
+        $response['leadid'] = $lead['id'];
         return $response;
     }
 

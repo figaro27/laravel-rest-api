@@ -25,6 +25,7 @@ class SystemController extends Controller
 
         foreach ($ingredients as $ingredient) {
             $systemdetail = $ingredient;
+
             $systemdetail['systemid'] = $systemId;
             $systemdetail['created_by'] = $user->id;
             $systemdetail['updated_by'] = $user->id;
@@ -66,7 +67,6 @@ class SystemController extends Controller
             array_push($res_ingredients, $res_systemdetail);
         }
         $res_system['ingredients'] = $res_ingredients;
-
         $response = $res_system;
         return $response;
     }
