@@ -428,6 +428,170 @@
         "status": "success"
     }
 
+/project, post
+request:{"leadid"}
+response:{"projectid"}
+
+/projects, get
+
+[
+    {
+        "id": "7a8c0920-bbbb-4f3a-8b3d-97771335cdfe",
+        "leadid": "lead4",
+        "projectstatus": "estimate",
+        "created_by": "3",
+        "updated_by": "3",
+        "created_at": "2020-08-28 17:13:09",
+        "updated_at": "2020-08-28 17:13:09",
+        "install": null,
+        "designconsult": null,
+        "addressid": "address5",
+        "person": {
+            "id": "person4",
+            "firstname": "Raul",
+            "lastname": "Jhon",
+            "status": 1,
+            "version": 0,
+            "created_by": "3",
+            "updated_by": "3",
+            "company": "Concrete",
+            "created_at": null,
+            "updated_at": null
+        },
+        "address": {
+            "id": "address5",
+            "personid": "person4",
+            "address1": "Snaframcisco",
+            "address2": null,
+            "city": "San",
+            "state": "US",
+            "zip": "2201",
+            "type": "",
+            "status": 1,
+            "version": 0,
+            "created_by": "3",
+            "updated_by": "3",
+            "primary": 1,
+            "created_at": null,
+            "updated_at": null
+        }
+    },
+    {
+        "id": "a7e13e6b-919e-4a59-bd4e-92501c120d84",
+        "leadid": "lead4",
+        "projectstatus": "estimate",
+        "created_by": "3",
+        "updated_by": "3",
+        "created_at": "2020-08-28 17:13:41",
+        "updated_at": "2020-08-28 17:13:41",
+        "install": null,
+        "designconsult": null,
+        "addressid": "address5",
+        "person": {
+            "id": "person4",
+            "firstname": "Raul",
+            "lastname": "Jhon",
+            "status": 1,
+            "version": 0,
+            "created_by": "3",
+            "updated_by": "3",
+            "company": "Concrete",
+            "created_at": null,
+            "updated_at": null
+        },
+        "address": {
+            "id": "address5",
+            "personid": "person4",
+            "address1": "Snaframcisco",
+            "address2": null,
+            "city": "San",
+            "state": "US",
+            "zip": "2201",
+            "type": "",
+            "status": 1,
+            "version": 0,
+            "created_by": "3",
+            "updated_by": "3",
+            "primary": 1,
+            "created_at": null,
+            "updated_at": null
+        }
+    },
+    {
+        "id": "3b556df8-9860-450e-b2eb-b1a91d4b1b98",
+        "leadid": "lead4",
+        "projectstatus": "estimate",
+        "created_by": "3",
+        "updated_by": "3",
+        "created_at": "2020-08-28 17:23:15",
+        "updated_at": "2020-08-28 17:23:15",
+        "install": null,
+        "designconsult": null,
+        "addressid": "address5",
+        "person": {
+            "id": "person4",
+            "firstname": "Raul",
+            "lastname": "Jhon",
+            "status": 1,
+            "version": 0,
+            "created_by": "3",
+            "updated_by": "3",
+            "company": "Concrete",
+            "created_at": null,
+            "updated_at": null
+        },
+        "address": {
+            "id": "address5",
+            "personid": "person4",
+            "address1": "Snaframcisco",
+            "address2": null,
+            "city": "San",
+            "state": "US",
+            "zip": "2201",
+            "type": "",
+            "status": 1,
+            "version": 0,
+            "created_by": "3",
+            "updated_by": "3",
+            "primary": 1,
+            "created_at": null,
+            "updated_at": null
+        }
+    }
+]
+
+
+
+
+
+/projectdetail, post
+{
+ "projectid" :"ece03857-3d74-4577-94db-58ddc1bca724",
+ "projectdetails":[
+	{
+	"systemid":"7faa75bc-2593-49cd-8708-9a8cdc77e533",
+	"areaprice":2,
+	"area":12,
+	"areawidth":3,
+	"arealength":4,
+	"name": "area test",
+	"systemprice":40,
+	"salesprice":20,
+	"projectdetailstyles":[
+		{
+		"ingredientid":"ingredientid",
+		"colorid":"colorid",
+		"patternid":"patternid",
+		"purchaseprice":"30",
+		"chargeprice":"20"
+    		}
+		]
+	}
+ 	]
+}
+
+
+
 
 
 

@@ -43,14 +43,25 @@ Route::middleware('auth:api')->group( function () {
     Route::get('lead/{id}', 'API\LeadController@show');
     Route::delete('lead/{id}', 'API\LeadController@destroy');
 
+    Route::post('leaddetail', 'API\LeadDetailController@create');
+    Route::put('leaddetail/{id}', 'API\LeadDetailController@update');
+
     Route::post('project', 'API\ProjectController@create');
     Route::get('projects', 'API\ProjectController@list');
     Route::put('project/{id}', 'API\ProjectController@update');
 
     Route::post('projectdetail', 'API\ProjectDetailController@create');
 
-    Route::post('leaddetail', 'API\LeadDetailController@create');
-    Route::put('leaddetail/{id}', 'API\LeadDetailController@update');
+    Route::post('project/note', 'API\ProjectNoteController@create');
+    Route::get('project/note/list/{projectid}', 'API\ProjectNoteController@list');
+    Route::put('project/note/{id}', 'API\ProjectNoteController@update');
+    Route::delete('project/note/{id}', 'API\ProjectNoteController@destroy');
+
+    Route::post('project/image', 'API\ProjectImageController@create');
+    Route::get('project/image/list/{projectid}', 'API\ProjectImageController@list');
+    Route::put('project/image/{id}', 'API\ProjectImageController@update');
+    Route::delete('project/image/{id}', 'API\ProjectImageController@destroy');
+
 
     Route::post('color', 'API\ColorController@create');
     Route::put('color/{id}', 'API\ColorController@update');
