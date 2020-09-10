@@ -48,9 +48,12 @@ Route::middleware('auth:api')->group( function () {
 
     Route::post('project', 'API\ProjectController@create');
     Route::get('projects', 'API\ProjectController@list');
+    Route::get('project/{id}', 'API\ProjectController@show');
     Route::put('project/{id}', 'API\ProjectController@update');
 
     Route::post('projectdetail', 'API\ProjectDetailController@create');
+    Route::put('projectdetail/{id}', 'API\ProjectDetailController@update');
+
 
     Route::post('project/note', 'API\ProjectNoteController@create');
     Route::get('project/note/list/{projectid}', 'API\ProjectNoteController@list');

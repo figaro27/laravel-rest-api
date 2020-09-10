@@ -67,14 +67,14 @@ class ProjectController extends Controller
         return $projects;
     }
 
-    public function show(Request $request, $id)
+    public function show($id)
     {
-        $project = Lead::find($id);
+        $project = Project::find($id);
         $lead = $this->LeadController->show($project['leadid']);
         $project['person'] = $lead['person'];
         $address = Address::find($project['addressid']);
         $project['address'] = $address;
-        $projectdetails = ProjecctDetail::where('projectid', $project['id'])->get();
+        $projectdetails = ProjectDetail::where('projectid', $project['id'])->get();
         foreach($projectdetails as $projectdetail){
             $projectdetailstyles = ProjectDetailStyle::where('projectdetailid', $projectdetail['id']);
             $projectdetail['projectdetailstyles'] = $projectdetailstyles;

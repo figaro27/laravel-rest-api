@@ -25,7 +25,7 @@ class PhoneController extends Controller
             }
         }
 
-        $response = phone::create($phone);
+        $response = Phone::create($phone);
         return $response;
     }
 
