@@ -53,7 +53,7 @@ Route::middleware('auth:api')->group( function () {
 
     Route::post('projectdetail', 'API\ProjectDetailController@create');
     Route::put('projectdetail/{id}', 'API\ProjectDetailController@update');
-
+    Route::delete('projectdetail/{id}', 'API\ProjectDetailController@destroy');
 
     Route::post('project/note', 'API\ProjectNoteController@create');
     Route::get('project/note/list/{projectid}', 'API\ProjectNoteController@list');

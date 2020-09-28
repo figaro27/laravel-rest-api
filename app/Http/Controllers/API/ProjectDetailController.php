@@ -13,12 +13,7 @@ class ProjectDetailController extends Controller
     public function create(Request $request)
     {
         $user = auth()->user();
-        $input = $request->all();
-        $projectId = $input['projectid'];
-        $this->destroy($input['projectid']);
-        $projectdetails = $input['projectdetails'];
-        foreach($projectdetails as $projectdetail){
-            $projectdetail['projectid'] = $projectId;
+        $projectdetail = $request->all();
             $projectdetailstyles = $projectdetail['projectdetailstyles'];
 
             unset($projectdetail['projectdetailstyles']);
@@ -29,41 +24,32 @@ class ProjectDetailController extends Controller
                 $projectdetailstyle = ProjectDetailStyle::create($projectdetailstyle);
             }
             $projectdetail['projectdetailstyles'] = $projectdetailstyles;
-        }
-        return $projectdetails;
+
+        return $projectdetail;
 
     }
 
-    public function update(Reuqest $request, $id)
+    public function update(Request $request, $id)
     {
-        $this->destroy($id);
-        $projectdetails = $input['projectdetails'];
-        foreach($projectdetails as $projectdetail){
-            $projectdetail['projectid'] = $projectId;
+        $projectdetail = $request->all();
             $projectdetailstyles = $projectdetail['projectdetailstyles'];
-
             unset($projectdetail['projectdetailstyles']);
-
-            $projectdetail = ProjectDetail::create($projectdetail);
+            $res = ProjectDetail::find($id)->update($projectdetail);
             foreach($projectdetailstyles as $projectdetailstyle){
                 $projectdetailstyle['projectdetailid'] = $projectdetail['id'];
                 $projectdetailstyle = ProjectDetailStyle::create($projectdetailstyle);
             }
             $projectdetail['projectdetailstyles'] = $projectdetailstyles;
-        }
-        return $projectdetails;
 
+        return $projectdetail;
     }
 
-    public function destroy($projectId)
+    public function destroy($id)
     {
-        $projectdetails = ProjectDetail::where('projectid', $projectId)->get();
-        foreach($projectdetails as $projectdetail)
-        {
-            $projectdetailstyles = ProjectDetailStyle::where('projectdetailid', $projectdetail['id'])->get();
-            foreach($projectdetailstyles as $projectdetailstyle) $projectdetailstyle->delete();
-            $projectdetail->delete();
-        }
+        $projectdetail = ProjectDetail::find($id)->first();
+        $projectdetail->delete();
+        $response['status'] = "success";
+        return $response;
     }
 
     public function show($projectdetailid){
